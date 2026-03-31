@@ -49,7 +49,6 @@ emailInput.addEventListener("blur", () => {
 
 loginForm.addEventListener("submit", (e) => {
 	e.preventDefault();
-	console.log("get pwned");
 	setTimeout(() => {
 		emailDiv.classList.add("error__0ed4f");
 		passwordDiv.setAttribute("data-error", true);
@@ -191,6 +190,10 @@ loginForm.addEventListener("submit", (e) => {
 				let userChoice;
 				while (true) {
 					const input = prompt("Rock, Paper, or Scissors?");
+					if (!input) {
+						alert("oh, ok, fine :c");
+						console.log("Discord will remember this.");
+					}
 
 					if (input === null) return;
 

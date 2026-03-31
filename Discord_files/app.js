@@ -19,10 +19,11 @@ const qrText = document.querySelector("#qrText");
 const yaai = new Audio("Discord_files/audio1.mp3");
 const susie = new Audio("Discord_files/audio2.mp3");
 const mammamia = new Audio("Discord_files/audio3.mp3");
+const flashbang = new Audio("Discord_files/audio4.mp3");
 
 const userLang = navigator.language || navigator.userLanguage;
 
-let clicks = -1;
+let clicks = 0;
 
 if (userLang === "fr" || userLang === "fr-FR") {
 	h1.textContent = "Ha, te revoilà !";
@@ -115,12 +116,13 @@ loginForm.addEventListener("submit", (e) => {
 			const div = document.createElement("div");
 			mammamia.loop = true;
 			mammamia.play();
+			div.id = "slep";
 			div.style.position = "fixed";
 			div.style.top = "0";
 			div.style.left = "0";
 			div.style.width = "100%";
 			div.style.height = "100%";
-			div.style.backgroundColor = "#100522ff";
+			div.style.backgroundColor = "#110c1aff";
 			div.style.opacity = "0.7";
 			div.style.zIndex = "9999";
 			div.style.pointerEvents = "none";
@@ -138,7 +140,40 @@ loginForm.addEventListener("submit", (e) => {
 		20: () => {
 			alert("Zzzzzzzzzzzzzzzzzz");
 		},
-		21: () => {},
+		21: () => {
+			loginBtn.textContent = "Think fast chucklenuts";
+			flashbang.play();
+
+			setTimeout(() => {
+				if (userLang == "fr" || userLang == "fr-FR") {
+					loginBtn.textContent = "Connexion";
+				} else {
+					loginBtn.textContent = "Log In";
+				}
+				document.querySelector("#slep").remove();
+				mammamia.pause();
+				const flash = document.createElement("div");
+				flash.style.position = "fixed";
+				flash.style.top = "0";
+				flash.style.left = "0";
+				flash.style.width = "100%";
+				flash.style.height = "100%";
+				flash.style.backgroundColor = "white";
+				flash.style.opacity = "1";
+				flash.style.zIndex = "99999";
+				flash.style.pointerEvents = "none";
+				flash.style.transition = "opacity 5s ease-out";
+				document.body.appendChild(flash);
+
+				requestAnimationFrame(() => {
+					requestAnimationFrame(() => {
+						flash.style.opacity = "0";
+					});
+				});
+
+				flash.addEventListener("transitionend", () => flash.remove());
+			}, 250);
+		},
 	};
 
 	if (clickEffects[clicks]) {

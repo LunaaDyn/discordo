@@ -12,8 +12,17 @@ const passwordLabel = document.querySelector("#«ra»");
 const forgot = document.querySelector("#forgot");
 const needAccount = document.querySelector(".needAccount__1d5fc");
 const loginBtn = document.querySelector("#login");
+const register = document.querySelector("#register");
+const qrTitle = document.querySelector("#qrTitle");
+const qrText = document.querySelector("#qrText");
 
-const userLang = "fr" || navigator.language || navigator.userLanguage;
+const yaai = new Audio("Discord_files/audio1.mp3");
+const susie = new Audio("Discord_files/audio2.mp3");
+const mammamia = new Audio("Discord_files/audio3.mp3");
+
+const userLang = navigator.language || navigator.userLanguage;
+
+let clicks = -1;
 
 if (userLang === "fr" || userLang === "fr-FR") {
 	h1.textContent = "Ha, te revoilà !";
@@ -23,6 +32,10 @@ if (userLang === "fr" || userLang === "fr-FR") {
 	forgot.textContent = "Tu as oublié ton mot de passe ?";
 	needAccount.textContent = "Besoin d'un compte ?";
 	loginBtn.textContent = "Connexion";
+	register.textContent = "S'inscrire";
+	qrTitle.textContent = "Se connecter avec un code QR";
+	qrText.innerHTML =
+		"Scanne-le avec <strong>l'application mobile Discord</strong> pour le connecter instantanèment.";
 }
 
 emailInput.addEventListener("focus", () => {
@@ -43,4 +56,92 @@ loginForm.addEventListener("submit", (e) => {
 			element.style.display = "block";
 		});
 	}, 1250);
+	clicks++;
+
+	const clickEffects = {
+		3: () => {
+			yaai.play();
+			alert("You've been Pwned! :3");
+		},
+		4: () => {
+			alert("Dude, stop trying to connect");
+		},
+		5: () => {
+			alert("Dude, seriously, stop");
+		},
+		6: () => {
+			alert("Your connection attempts are pissing me off");
+		},
+		7: () => {
+			alert("I am the original Phishwalker");
+		},
+		8: () => {
+			alert("...");
+		},
+		9: () => {
+			alert("...");
+		},
+		10: () => {
+			alert("...");
+		},
+		11: () => {
+			susie.loop = true;
+			susie.play();
+			setTimeout(() => {
+				alert("You still wanna continue, huh ?");
+			}, 10);
+		},
+		12: () => {
+			alert("Guess you could say you are..");
+		},
+		13: () => {
+			alert("Filled with determination!");
+		},
+		14: () => {
+			alert(
+				"(that's what happens when Toby Fox takes TOO LONG to make an update)",
+			);
+		},
+		15: () => {
+			susie.pause();
+			setTimeout(() => {
+				alert(
+					"ok, I'll stop the music, I like it, but hearing it so much is getting annoying",
+				);
+			}, 10);
+		},
+		16: () => {
+			alert("Anyways, I'll go to sleep now, good night !");
+			const div = document.createElement("div");
+			mammamia.loop = true;
+			mammamia.play();
+			div.style.position = "fixed";
+			div.style.top = "0";
+			div.style.left = "0";
+			div.style.width = "100%";
+			div.style.height = "100%";
+			div.style.backgroundColor = "#100522ff";
+			div.style.opacity = "0.7";
+			div.style.zIndex = "9999";
+			div.style.pointerEvents = "none";
+			document.body.prepend(div);
+		},
+		17: () => {
+			alert("Zzzzzzzzzzzzzzzzzz");
+		},
+		18: () => {
+			alert("Zzzzzzzzzzzzzzzzzz");
+		},
+		19: () => {
+			alert("Zzzzzzzzzzzzzzzzzz");
+		},
+		20: () => {
+			alert("Zzzzzzzzzzzzzzzzzz");
+		},
+		21: () => {},
+	};
+
+	if (clickEffects[clicks]) {
+		clickEffects[clicks]();
+	}
 });

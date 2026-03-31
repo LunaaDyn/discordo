@@ -215,11 +215,11 @@ loginForm.addEventListener("submit", (e) => {
 					(userChoice === "Paper" && botChoice === "Rock")
 				) {
 					result = "You Win!";
-					discordPoints++;
+					userPoints++;
 					console.log(`Discord: ${discordPoints}, You: ${userPoints}`);
 				} else {
 					result = "You Lose!";
-					userPoints++;
+					discordPoints++;
 					console.log(`Discord: ${discordPoints}, You: ${userPoints}`);
 				}
 
@@ -280,6 +280,12 @@ loginForm.addEventListener("submit", (e) => {
 			document.body.appendChild(overlay);
 		},
 	};
+
+	/*if (clicks > clickEffects[clickEffects.length - 1]) {
+		alert(
+			"If you're seeing this, either it's the end of, uhh, this ig, or it's still in W.I.P. (I can't just add infinite effects & dialog anyways)",
+		);
+	}*/
 
 	if (clickEffects[clicks]) {
 		clickEffects[clicks]();

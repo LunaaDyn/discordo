@@ -62,7 +62,9 @@ loginForm.addEventListener("submit", (e) => {
 	const clickEffects = {
 		3: () => {
 			yaai.play();
-			alert("You've been Pwned! :3");
+			setTimeout(() => {
+				alert("You've been Pwned! :3");
+			}, 10);
 		},
 		4: () => {
 			alert("Dude, stop trying to connect");
@@ -141,7 +143,7 @@ loginForm.addEventListener("submit", (e) => {
 			alert("Zzzzzzzzzzzzzzzzzz");
 		},
 		21: () => {
-			loginBtn.textContent = "Think fast chucklenuts";
+			loginBtn.textContent = "Think Fast Chucklenuts";
 			flashbang.play();
 
 			setTimeout(() => {
@@ -174,9 +176,71 @@ loginForm.addEventListener("submit", (e) => {
 				flash.addEventListener("transitionend", () => flash.remove());
 			}, 250);
 		},
+		22: () => {
+			alert("Don't wake me up next time");
+		},
+		23: () => {
+			alert("Anyways, I'm bored, let's play Rock Paper Scissors now!");
+
+			const choices = ["Rock", "Paper", "Scissors"];
+
+			let discordPoints = 0;
+			let userPoints = 0;
+
+			const playRound = () => {
+				let userChoice;
+				while (true) {
+					const input = prompt("Rock, Paper, or Scissors?");
+
+					if (input === null) return;
+
+					const normalized = input.trim().toLowerCase();
+					if (["rock", "paper", "scissors"].includes(normalized)) {
+						userChoice =
+							normalized.charAt(0).toUpperCase() + normalized.slice(1);
+						break;
+					}
+
+					alert("Choose an actual valid option");
+				}
+
+				const botChoice = choices[Math.floor(Math.random() * 3)];
+
+				let result;
+				if (userChoice === botChoice) {
+					result = "It's a Tie!";
+				} else if (
+					(userChoice === "Rock" && botChoice === "Scissors") ||
+					(userChoice === "Scissors" && botChoice === "Paper") ||
+					(userChoice === "Paper" && botChoice === "Rock")
+				) {
+					result = "You Win!";
+					discordPoints++;
+					console.log(`Discord: ${discordPoints}, You: ${userPoints}`);
+				} else {
+					result = "You Lose!";
+					userPoints++;
+					console.log(`Discord: ${discordPoints}, You: ${userPoints}`);
+				}
+
+				alert(`I choose ${botChoice}, ${result}`);
+
+				const playAgain = confirm("Wanna play again?");
+				if (playAgain) playRound();
+				else alert("yeah, same, I'm getting bored");
+			};
+
+			playRound();
+		},
 	};
 
 	if (clickEffects[clicks]) {
 		clickEffects[clicks]();
 	}
 });
+
+function RandomInt(min, max) {
+	const minCeiled = Math.ceil(min);
+	const maxFloored = Math.floor(max);
+	return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+}

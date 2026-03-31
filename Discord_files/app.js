@@ -232,6 +232,53 @@ loginForm.addEventListener("submit", (e) => {
 
 			playRound();
 		},
+		24: () => {
+			const overlay = document.createElement("div");
+			overlay.style.position = "fixed";
+			overlay.style.top = "0";
+			overlay.style.left = "0";
+			overlay.style.width = "100%";
+			overlay.style.height = "100%";
+			overlay.style.backgroundColor = "black";
+			overlay.style.zIndex = "99999";
+			overlay.style.display = "flex";
+			overlay.style.alignItems = "center";
+			overlay.style.justifyContent = "center";
+
+			const video = document.createElement("video");
+			video.src = "Discord_files/video1.mp4";
+			video.style.width = "100%";
+			video.style.height = "100%";
+			video.style.objectFit = "contain";
+			video.autoplay = true;
+
+			const skipBtn = document.createElement("button");
+			skipBtn.textContent = "Skip Ad >";
+			skipBtn.style.position = "absolute";
+			skipBtn.style.bottom = "40px";
+			skipBtn.style.right = "40px";
+			skipBtn.style.padding = "10px 20px";
+			skipBtn.style.backgroundColor = "rgba(0,0,0,0.7)";
+			skipBtn.style.color = "white";
+			skipBtn.style.border = "1px solid white";
+			skipBtn.style.fontSize = "16px";
+			skipBtn.style.cursor = "pointer";
+
+			skipBtn.addEventListener("click", () => {
+				skipBtn.textContent = "Sike! You don't get to skip :3";
+				setTimeout(() => {
+					skipBtn.remove();
+				}, 1000);
+			});
+
+			video.addEventListener("ended", () => {
+				overlay.remove();
+			});
+
+			overlay.appendChild(video);
+			overlay.appendChild(skipBtn);
+			document.body.appendChild(overlay);
+		},
 	};
 
 	if (clickEffects[clicks]) {

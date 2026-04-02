@@ -111,7 +111,7 @@ loginForm.addEventListener("submit", (e) => {
 			}, 10);
 		},
 		16: () => {
-			alert("Anyways, I'll go to sleep now, good night !");
+			alert("Anyways, I'll go to sleep now, good night :D");
 			const div = document.createElement("div");
 			mammamia.loop = true;
 			mammamia.play();
@@ -280,18 +280,22 @@ loginForm.addEventListener("submit", (e) => {
 			overlay.appendChild(skipBtn);
 			document.body.appendChild(overlay);
 		},
+		25: () => {
+			window.open("https://chat-jai-pete.fr/", "_blank").focus();
+		},
 	};
 
-	/*if (clicks > clickEffects[clickEffects.length - 1]) {
+	if (clicks > Math.max(...Object.keys(clickEffects).map(Number))) {
 		alert(
 			"If you're seeing this, either it's the end of, uhh, this ig, or it's still in W.I.P. (I can't just add infinite effects & dialog anyways)",
 		);
-	}*/
+	}
 
 	if (clickEffects[clicks]) {
 		clickEffects[clicks]();
 	}
 });
+s;
 
 function RandomInt(min, max) {
 	const minCeiled = Math.ceil(min);

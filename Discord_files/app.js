@@ -107,9 +107,7 @@ loginForm.addEventListener("submit", (e) => {
 		15: () => {
 			susie.pause();
 			setTimeout(() => {
-				alert(
-					"ok, I'll stop the music, I like it, but hearing it so much is getting annoying",
-				);
+				alert("ok, sorry, this part was low-key cringe, I'll stop the music");
 			}, 10);
 		},
 		16: () => {
